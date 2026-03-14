@@ -1,0 +1,105 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git:*)",
+      "Bash(ls:*)",
+      "Bash(python:*)",
+      "Bash(python3:*)",
+      "Bash(pip:*)",
+      "Bash(uv:*)",
+      "Bash(ruff:*)",
+      "Bash(mypy:*)",
+      "Bash(pytest:*)",
+      "Bash(pre-commit:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Bash(powershell:*)",
+      "Bash(gh:*)",
+      "Bash(bandit:*)",
+      "Bash(pip-audit:*)",
+      "Bash(detect-secrets:*)",
+      "Bash(safety:*)",
+      "Bash(ssh:*)",
+      "Bash(scp:*)",
+      "Bash(markdownlint-cli2:*)",
+      "Read(//d/GitHub/Mira/**)",
+      "Bash(gh repo create RichardZak70/FOXRUN-TECH --public --description \"Disability-Assist: Open-source assistive communication and environmental-control system\" --source d:/GitHub/AI-Assist)"
+    ],
+    "deny": []
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd $(git rev-parse --show-toplevel 2>/dev/null || echo .) && python .claude/hooks/lint-python.py",
+            "timeout": 30000
+          },
+          {
+            "type": "command",
+            "command": "cd $(git rev-parse --show-toplevel 2>/dev/null || echo .) && python .claude/hooks/remind-doc-update.py",
+            "timeout": 5000
+          },
+          {
+            "type": "command",
+            "command": "cd $(git rev-parse --show-toplevel 2>/dev/null || echo .) && python .claude/hooks/check-magic-numbers.py",
+            "timeout": 10000
+          },
+          {
+            "type": "command",
+            "command": "cd $(git rev-parse --show-toplevel 2>/dev/null || echo .) && python .claude/hooks/check-line-endings.py",
+            "timeout": 10000
+          },
+          {
+            "type": "command",
+            "command": "cd $(git rev-parse --show-toplevel 2>/dev/null || echo .) && python .claude/hooks/check-no-mock.py",
+            "timeout": 10000
+          },
+          {
+            "type": "command",
+            "command": "cd $(git rev-parse --show-toplevel 2>/dev/null || echo .) && python .claude/hooks/check-privacy-patterns.py",
+            "timeout": 10000
+          },
+          {
+            "type": "command",
+            "command": "cd $(git rev-parse --show-toplevel 2>/dev/null || echo .) && python .claude/hooks/check-consent-lanes.py",
+            "timeout": 10000
+          },
+          {
+            "type": "command",
+            "command": "cd $(git rev-parse --show-toplevel 2>/dev/null || echo .) && python .claude/hooks/sync-versions.py",
+            "timeout": 10000
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd $(git rev-parse --show-toplevel 2>/dev/null || echo .) && python .claude/hooks/check-ci-after-push.py",
+            "timeout": 5000
+          },
+          {
+            "type": "command",
+            "command": "cd $(git rev-parse --show-toplevel 2>/dev/null || echo .) && python .claude/hooks/remind-device-route.py",
+            "timeout": 5000
+          },
+          {
+            "type": "command",
+            "command": "cd $(git rev-parse --show-toplevel 2>/dev/null || echo .) && python .claude/hooks/remind-plan-update.py",
+            "timeout": 5000
+          },
+          {
+            "type": "command",
+            "command": "cd $(git rev-parse --show-toplevel 2>/dev/null || echo .) && python .claude/hooks/check-phase-scope.py",
+            "timeout": 10000
+          }
+        ]
+      }
+    ]
+  }
+}
