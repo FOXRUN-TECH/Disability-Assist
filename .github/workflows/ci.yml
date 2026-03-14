@@ -51,4 +51,6 @@ jobs:
       - name: Install dependencies
         run: pip install -e ".[dev]"
       - name: Run tests
-        run: pytest tests/ -v --tb=short --no-cov
+        run: |
+          # Exit code 5 = no tests collected, which is OK in early phases
+          pytest tests/ -v --tb=short --no-cov || [ $? -eq 5 ]

@@ -121,8 +121,7 @@ def main() -> int:
         print(f"\n[consent-lanes] Missing annotations in {file_path}", file=sys.stderr)
         for line_no, func_name in findings[:_DISPLAY_LIMIT]:
             print(
-                f"  L{line_no}: {func_name}() handles user data but has no "
-                f"consent lane annotation",
+                f"  L{line_no}: {func_name}() handles user data but has no consent lane annotation",
                 file=sys.stderr,
             )
         if len(findings) > _DISPLAY_LIMIT:

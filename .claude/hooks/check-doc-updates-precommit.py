@@ -37,10 +37,7 @@ def main() -> int:
         return 0
 
     # Check if any source files are staged.
-    has_source = any(
-        any(f.startswith(p) for p in SOURCE_PATTERNS)
-        for f in staged_files
-    )
+    has_source = any(any(f.startswith(p) for p in SOURCE_PATTERNS) for f in staged_files)
 
     if not has_source:
         return 0
