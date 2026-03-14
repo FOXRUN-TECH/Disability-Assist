@@ -1,0 +1,61 @@
+name: Privacy Issue
+description: Report a privacy or consent concern
+title: "[Privacy]: "
+labels: ["privacy", "priority-high", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **This template is for privacy and consent issues.**
+
+        If this involves a **security vulnerability** (data breach, auth bypass),
+        do NOT report it here. See [SECURITY.md](../../SECURITY.md) for responsible disclosure.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Privacy Category
+      options:
+        - PII in logs or output
+        - Raw audio retained without consent
+        - Consent lane not enforced
+        - Data retained beyond policy
+        - Deletion request not honored
+        - Role access too broad
+        - De-identification failure
+        - Other privacy concern
+    validations:
+      required: true
+
+  - type: dropdown
+    id: consent_lane
+    attributes:
+      label: Consent Lane Affected
+      description: Which consent lane is involved?
+      options:
+        - Lane 1 - Core Cloud Operation
+        - Lane 2 - Caregiver Remote Access
+        - Lane 3 - Cloud Sync of Personalization
+        - Lane 4 - De-identified Community Learning
+        - Lane 5 - De-identified Research Participation
+        - Lane 6 - Optional Audio Research
+        - Unknown / Multiple
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What privacy concern did you observe?
+    validations:
+      required: true
+
+  - type: textarea
+    id: data_involved
+    attributes:
+      label: Data Involved
+      description: What type of data is affected? (Do NOT include actual PII here)
+      placeholder: "e.g., user transcript, caregiver paraphrase, consent record"
+    validations:
+      required: true

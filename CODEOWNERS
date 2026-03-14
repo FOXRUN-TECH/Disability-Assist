@@ -1,0 +1,24 @@
+# CODEOWNERS -- Disability-Assist
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for everything
+* @FOXRUN-TECH/maintainers
+
+# Privacy and consent -- requires privacy review
+cloud/consent/          @FOXRUN-TECH/privacy-reviewers
+policy/                 @FOXRUN-TECH/privacy-reviewers
+docs/governance/        @FOXRUN-TECH/privacy-reviewers
+
+# Safety-critical paths
+cloud/llm/              @FOXRUN-TECH/safety-reviewers
+device/router/          @FOXRUN-TECH/safety-reviewers
+
+# Infrastructure and CI
+.github/                @FOXRUN-TECH/maintainers
+infra/                  @FOXRUN-TECH/maintainers
+.claude/                @FOXRUN-TECH/maintainers
+
+# Documentation
+docs/                   @FOXRUN-TECH/maintainers
+CLAUDE.md               @FOXRUN-TECH/maintainers
+README.md               @FOXRUN-TECH/maintainers

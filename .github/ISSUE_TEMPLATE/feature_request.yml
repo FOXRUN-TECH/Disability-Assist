@@ -1,0 +1,71 @@
+name: Feature Request
+description: Suggest a feature or improvement
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before requesting a feature, please check the [roadmap](../../docs/roadmap.md)
+        and [PRDs](../../docs/PRD-00-Index.md) to see if it is already planned.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or Need
+      description: What problem does this feature solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: How would you like this to work?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - Device Runtime
+        - Cloud Services
+        - Policy / Safety
+        - Smart-Home Integration
+        - Caregiver App
+        - Consent / Privacy
+        - Personalization
+        - Infrastructure
+        - Documentation
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: phase
+    attributes:
+      label: Relevant Phase
+      description: Which roadmap phase does this relate to?
+      options:
+        - Phase 0 - Governance
+        - Phase 1 - Core Speech
+        - Phase 2 - Smart-Home
+        - Phase 3 - Personalization
+        - Phase 4 - Caregiver App
+        - Phase 5 - Consent Controls
+        - Phase 6 - Pilot Ops
+        - Phase 7 - Pilot Launch
+        - Phase 8 - Shared Intelligence
+        - Phase 9 - Research
+        - Not sure
+
+  - type: checkboxes
+    id: considerations
+    attributes:
+      label: Have you considered...
+      options:
+        - label: This feature aligns with the project's assistive goals
+        - label: This feature does not increase surveillance risk
+        - label: This feature respects consent lane boundaries

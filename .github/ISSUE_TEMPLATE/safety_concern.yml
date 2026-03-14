@@ -1,0 +1,55 @@
+name: Safety Concern
+description: Report a safety issue (risk tier bypass, hard constraint violation, dignity concern)
+title: "[Safety]: "
+labels: ["safety", "priority-critical", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **This template is for safety concerns** -- situations where the system behaves
+        in a way that could harm user dignity, bypass risk tier controls, or violate
+        hard constraints.
+
+        If this is a **security vulnerability** (auth bypass, data leak, etc.),
+        do NOT report it here. See [SECURITY.md](../../SECURITY.md) for responsible disclosure.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Safety Category
+      options:
+        - Risk tier bypass (action executed at wrong tier)
+        - Hard constraint violation (purchase, medication, emergency, clinical)
+        - Dignity concern (patronizing language, clinical framing)
+        - Consent bypass (data processed without proper consent)
+        - Raw transcript exposure (transcript shown where paraphrase expected)
+        - Caregiver over-access (role seeing more than permitted)
+        - Other safety concern
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened and why it is a safety concern?
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: Who is affected and how?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      placeholder: |
+        1. ...
+        2. ...
+    validations:
+      required: true
