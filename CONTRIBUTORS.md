@@ -24,8 +24,8 @@ of contribution size.
 
 | Name | Contributions |
 |------|---------------|
-| Claude Opus 4.6 | 1 commit |
-| Richard Zakrzewski | 1 commit |
+| Claude Opus 4.6 | 2 commits |
+| Richard Zakrzewski | 2 commits |
 
 <!-- CONTRIBUTORS-END -->
 
