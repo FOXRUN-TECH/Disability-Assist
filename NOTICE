@@ -1,0 +1,49 @@
+Disability-Assist
+Copyright 2026 Disability-Assist Contributors
+
+This product includes software developed by the Disability-Assist
+open-source community (https://github.com/your-org/AI-Assist).
+
+Licensed under the Apache License, Version 2.0.
+
+===============================================================================
+CONTRIBUTORS
+===============================================================================
+
+This file is automatically maintained. See CONTRIBUTORS.md for the full
+contributor list with details.
+
+===============================================================================
+THIRD-PARTY NOTICES
+===============================================================================
+
+This project uses the following third-party libraries. Each library is
+distributed under its own license terms:
+
+Library                          License        Purpose
+-------------------------------------------------------------------------------
+FastAPI                          MIT            Web framework (cloud API)
+Pydantic                         MIT            Data validation
+SQLAlchemy                       MIT            Database ORM
+uvicorn                          BSD-3-Clause   ASGI server
+httpx                            BSD-3-Clause   HTTP client
+cryptography                     Apache-2.0     Encryption primitives
+keyring                          MIT            Secret storage
+PyYAML                           MIT            YAML parsing
+python-dotenv                    BSD-3-Clause   Environment loading
+psutil                           BSD-3-Clause   System monitoring
+aiosqlite                        MIT            Async SQLite
+anthropic                        MIT            Claude LLM client
+deepgram-sdk                     MIT            Deepgram STT client
+azure-cognitiveservices-speech   MIT            Azure TTS client
+qdrant-client                    Apache-2.0     Vector store client
+paramiko                         LGPL-2.1       SSH client (provisioning only)
+pytest                           MIT            Testing framework
+ruff                             MIT            Linter and formatter
+mypy                             MIT            Type checker
+
+Note: paramiko (LGPL-2.1) is used only in the optional provisioning tooling,
+not in the core runtime. This complies with the project's [LIC] rule that
+production dependencies must be MIT/Apache/BSD.
+
+For exact versions, see pyproject.toml.

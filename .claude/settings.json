@@ -26,7 +26,10 @@
       "Read(//d/GitHub/Mira/**)",
       "Bash(gh repo create RichardZak70/FOXRUN-TECH --public --description \"Disability-Assist: Open-source assistive communication and environmental-control system\" --source d:/GitHub/AI-Assist)"
     ],
-    "deny": []
+    "deny": [],
+    "additionalDirectories": [
+      "C:\\Users\\User\\.claude\\plans"
+    ]
   },
   "hooks": {
     "PostToolUse": [

@@ -24,7 +24,7 @@ from __future__ import annotations
 from typing import Final
 
 # Current active phase -- update this as phases complete.
-ACTIVE_PHASE: Final[str] = "0"
+ACTIVE_PHASE: Final[str] = "1"
 
 # Files that are always allowed regardless of phase.
 SHARED_PATHS: Final[frozenset[str]] = frozenset(

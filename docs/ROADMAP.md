@@ -14,7 +14,7 @@ The implementation order is driven by four constraints:
 - caregiver visibility is core product scope, not a later add-on;
 - assisted-home deployment introduces role, audit, and dignity requirements from day one.
 
-## Phase 0 — Repo foundation and governance baseline
+## Phase 0 — Repo foundation and governance baseline ✅ COMPLETE
 
 ### Objectives
 - establish the repo structure and documentation baseline;

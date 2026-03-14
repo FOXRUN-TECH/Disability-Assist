@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **This is NOT** a diagnostic product, treatment device, clinical monitoring platform, emergency response system, or substitute for professional judgment.
 
-**Version:** 0.0.1 | **Status:** Phase 0 (Documentation & Governance) | **License:** Open Source
+**Version:** 0.0.1 | **Status:** Phase 1 (Core Cloud Speech & Device Loop) | **License:** Apache 2.0
 **Full spec:** [docs/PRD-00-Index.md](docs/PRD-00-Index.md) | **Roadmap:** [docs/roadmap.md](docs/roadmap.md)
 **Decision framework:** Dignity > Privacy > Accuracy > Simplicity
 
@@ -18,7 +18,7 @@ Six-component system with cloud-first inference and local device runtime:
 
 - **`device/`** -- Python RPi5 runtime (audio capture, wake word, action router, local SQLite cache)
 - **`cloud/`** -- Cloud inference layer (STT, LLM intent engine, TTS, retrieval/RAG, consent service)
-  - STT, LLM, TTS providers to be selected
+  - STT: Deepgram Nova-3 | LLM: Anthropic Claude | TTS: Azure Cognitive Services
   - PostgreSQL for accounts, consent, roles, audit
   - Qdrant for assistive priors / community patterns
 - **`policy/`** -- Policy and safety layer (risk tiers 0-3, action validation, hard constraints)
@@ -71,8 +71,8 @@ npx markdownlint-cli2 "docs/**/*.md"
 
 | Phase | Name | Status |
 |-------|------|--------|
-| **Phase 0** | **Repo Foundation & Governance** | **In Progress** |
-| Phase 1 | Core Cloud Speech & Device Loop | Planned |
+| **Phase 0** | **Repo Foundation & Governance** | **Complete** |
+| **Phase 1** | **Core Cloud Speech & Device Loop** | **In Progress** |
 | Phase 2 | Smart-Home & Media Control | Planned |
 | Phase 3 | Personalization & Assistive Profile | Planned |
 | Phase 4 | Caregiver App & Role-Based Access | Planned |

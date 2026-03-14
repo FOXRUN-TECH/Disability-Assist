@@ -1,0 +1,138 @@
+[project]
+name = "disability-assist"
+version = "0.0.1"
+description = "Open-source, cloud-first assistive communication and environmental-control system"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.135.1",
+    "uvicorn[standard]>=0.41.0",
+    "pydantic>=2.12.5",
+    "pydantic-settings>=2.13.1",
+    "python-dotenv>=1.2.2",
+    "aiosqlite>=0.22.1",
+    "sqlalchemy>=2.0.47",
+    "httpx>=0.28.1",
+    "pyyaml>=6.0.3",
+    "cryptography>=46.0.5",
+    "keyring>=25.7.0",
+    "psutil>=7.2.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0.2",
+    "pytest-asyncio>=1.3.0",
+    "pytest-cov>=7.0.0",
+    "pytest-mock>=3.15.1",
+    "ruff>=0.15.4",
+    "mypy>=1.19.1",
+    "pre-commit>=4.5.1",
+    "bandit>=1.9.4",
+    "pip-audit>=2.10.0",
+    "types-PyYAML>=6.0.12",
+    "hypothesis>=6.100.0",
+    "pytest-randomly>=3.15.0",
+    "freezegun>=1.4.0",
+]
+
+cloud = [
+    "anthropic>=0.84.0",
+    "deepgram-sdk>=6.0.1",
+    "azure-cognitiveservices-speech>=1.48.0",
+]
+
+voice = [
+    "numpy>=1.24.0",
+    "pyaudio>=0.2.14",
+    "faster-whisper>=1.2.1",
+    "kokoro-onnx>=0.4.0",
+    "silero-vad>=6.2.1",
+    "openwakeword>=0.6.0",
+    "pyttsx3>=2.99",
+    "sounddevice>=0.5.0",
+]
+
+vector = [
+    "qdrant-client>=1.7.0",
+]
+
+provisioning = [
+    "paramiko>=4.0.0",
+    "colorama>=0.4.6",
+    "rich>=14.3.3",
+    "click>=8.3.1",
+]
+
+[build-system]
+requires = ["setuptools>=82.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["device*", "cloud*", "policy*", "infra*"]
+exclude = ["tests*", "config*", "docs*", "scripts*", "mobile*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.format]
+line-ending = "lf"
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "C4", "UP", "D", "TRY", "SIM", "PIE", "RUF"]
+ignore = ["E501", "TRY003", "TRY300", "TRY301", "D107"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D"]
+"**/__init__.py" = ["D104"]
+".claude/hooks/**" = ["D"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+plugins = ["pydantic.mypy"]
+
+[tool.pydantic-mypy]
+init_typed = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
+asyncio_mode = "auto"
+addopts = "-v --cov=device --cov=cloud --cov=policy --cov-report=html --cov-report=term"
+markers = [
+    "unit: Unit tests (default)",
+    "integration: Integration tests",
+    "slow: Tests exceeding 1 second",
+    "fuzz: Fuzz/property-based tests",
+    "perf: Performance benchmark tests",
+    "smoke: Smoke tests (critical path subset)",
+    "e2e: End-to-end tests",
+]
+
+[tool.coverage.run]
+source = ["device", "cloud", "policy"]
+omit = ["*/tests/*", "*/test_*.py"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 55
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]

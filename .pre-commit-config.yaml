@@ -1,0 +1,85 @@
+# Pre-commit hooks for Disability-Assist
+# Install: pre-commit install
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+        exclude: '\.(bat|cmd|ps1)$'
+      - id: mixed-line-ending
+        name: mixed-line-ending (crlf for windows files)
+        args: [--fix=crlf]
+        files: '\.(bat|cmd|ps1)$'
+      - id: check-yaml
+      - id: check-json
+      - id: check-toml
+      - id: check-merge-conflict
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.4
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+      - id: ruff-format
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.19.1
+    hooks:
+      - id: mypy
+        additional_dependencies: [types-PyYAML, pydantic>=2.0, pydantic-settings>=2.0]
+        args: [--ignore-missing-imports]
+
+  # Local enforcement hooks (from .claude/hooks/)
+  - repo: local
+    hooks:
+      - id: check-doc-updates
+        name: Check documentation updates
+        entry: python .claude/hooks/check-doc-updates-precommit.py
+        language: python
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+
+      - id: check-magic-numbers
+        name: Check for magic numbers
+        entry: python .claude/hooks/check-magic-numbers-precommit.py
+        language: python
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+
+      - id: check-line-endings
+        name: Check line endings (LF/CRLF)
+        entry: python .claude/hooks/check-line-endings-precommit.py
+        language: python
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+
+      - id: check-version-sync
+        name: Check version consistency
+        entry: python .claude/hooks/check-version-sync-precommit.py
+        language: python
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+
+      - id: check-no-mock
+        name: Check for mock patterns in production code
+        entry: python .claude/hooks/check-no-mock-precommit.py
+        language: python
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+
+      - id: check-privacy-patterns
+        name: Check for PII exposure patterns
+        entry: python .claude/hooks/check-privacy-patterns-precommit.py
+        language: python
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
