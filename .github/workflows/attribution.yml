@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   update-contributors:
@@ -15,26 +16,23 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Configure git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
       - name: Update CONTRIBUTORS.md
         run: python scripts/update-contributors.py
 
-      - name: Commit and push if changed
-        run: |
-          git add CONTRIBUTORS.md
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "docs: update contributor attribution [skip ci]"
-            git push
-          fi
+      - name: Create PR if changed
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "docs: update contributor attribution"
+          title: "docs: update contributor attribution"
+          body: |
+            Automated update of CONTRIBUTORS.md from git history.
+
+            This PR was created automatically by the Attribution workflow.
+          branch: auto/update-contributors
+          delete-branch: true
+          labels: documentation
